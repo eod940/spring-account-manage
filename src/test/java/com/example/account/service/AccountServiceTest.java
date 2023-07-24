@@ -41,8 +41,8 @@ class AccountServiceTest {
     public void createAccountSuccess() throws Exception {
         //given
         AccountUser user = AccountUser.builder()
-                .id(12L)
                 .name("Pobi").build();
+        user.setId(12L);
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.of(user));
         given(accountRepository.findFirstByOrderByIdDesc())
@@ -68,8 +68,8 @@ class AccountServiceTest {
 
         //given
         AccountUser user = AccountUser.builder()
-                .id(15L)
                 .name("Pobi").build();
+        user.setId(15L);
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.of(user));
 
@@ -97,9 +97,8 @@ class AccountServiceTest {
     public void createAccount_UserNotFound() throws Exception {
         //given
         AccountUser user = AccountUser.builder()
-                .id(15L)
                 .name("Pobi").build();
-
+        user.setId(15L);
         //when
         AccountException exception = assertThrows(AccountException.class,
                 () -> accountService.createAccount(1L, 1000L));
@@ -113,8 +112,8 @@ class AccountServiceTest {
     public void createAccount_maxAccountIs10() throws Exception {
         //given
         AccountUser user = AccountUser.builder()
-                .id(15L)
                 .name("Pobi").build();
+        user.setId(15L);
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.of(user));
         given(accountRepository.countByAccountUser(any()))
@@ -132,8 +131,8 @@ class AccountServiceTest {
     public void deleteAccountSuccess() throws Exception {
         //given
         AccountUser user = AccountUser.builder()
-                .id(12L)
                 .name("Pobi").build();
+        user.setId(12L);
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.of(user));
         given(accountRepository.findByAccountNumber(anyString()))
