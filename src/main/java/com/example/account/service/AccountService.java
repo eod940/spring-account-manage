@@ -1,5 +1,12 @@
 package com.example.account.service;
 
+import static com.example.account.type.AccountStatus.IN_USE;
+import static com.example.account.type.ErrorCode.ACCOUNT_ALREADY_UNREGISTERED;
+import static com.example.account.type.ErrorCode.ACCOUNT_NOT_FOUND;
+import static com.example.account.type.ErrorCode.BALANCE_NOT_EMPTY;
+import static com.example.account.type.ErrorCode.USER_ACCOUNT_UN_MATCH;
+import static com.example.account.type.ErrorCode.USER_NOT_FOUND;
+
 import com.example.account.domain.Account;
 import com.example.account.domain.AccountUser;
 import com.example.account.dto.AccountDto;
@@ -8,19 +15,13 @@ import com.example.account.repository.AccountRepository;
 import com.example.account.repository.AccountUserRepository;
 import com.example.account.type.AccountStatus;
 import com.example.account.type.ErrorCode;
-import io.netty.resolver.dns.DnsServerAddresses;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static com.example.account.type.AccountStatus.IN_USE;
-import static com.example.account.type.ErrorCode.*;
+import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -65,7 +66,8 @@ public class AccountService {
         if (id < 0) {
             throw new RuntimeException("Minus");
         }
-        return accountRepository.findById(id).get();
+        return accountRepository.findById(id)
+            .orElseThrow(() -> new AccountException(ACCOUNT_NOT_FOUND));
     }
 
     @Transactional
@@ -109,8 +111,7 @@ public class AccountService {
     }
 
     private AccountUser getAccountUser(Long userId) {
-        AccountUser accountUser = accountUserRepository.findById(userId)
+      return accountUserRepository.findById(userId)
                 .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
-        return accountUser;
     }
 }
