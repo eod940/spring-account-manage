@@ -8,6 +8,18 @@ spring을 기반으로 계좌 관리 시스템을 개발∙실습 하기 위한 
 계좌 생성, 조회, 해지 서비스를 제공합니다.
 뿐만 아니라 거래, 거래 조회, 거래 취소 서비스를 제공합니다.
 
+## 🛠️ 기술 스택
+![spring boot](https://img.shields.io/badge/spring%20boot-6DB33F?style=for-the-badge&logo=spring%20boot&logoColor=white)
+![spring jpa](https://img.shields.io/badge/spring%20jpa-6DB33F?style=for-the-badge&logo=spring%20jpa&logoColor=white)
+<br />
+![h2 database](https://img.shields.io/badge/H2_Database-blue?style=for-the-badge)
+![redis](https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+<br />
+![jwt](https://img.shields.io/badge/jwt-black?style=for-the-badge&logo=json%20web%20tokens)
+![gradle](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
+![junit](https://img.shields.io/badge/junit-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+![postman](https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+
 ## ✅ 계좌 관련 API
 
 ### 1. 계좌 생성
